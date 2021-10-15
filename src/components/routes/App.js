@@ -2,12 +2,12 @@
 import * as React from 'react'
 import axios from 'axios'
 
-function App() {
+function App() { //Opening a component
 
     const [error, setError] = React.useState('')
     const [todos, setTodos] = React.useState([])
 
-    React.useEffect(() => {
+    React.useEffect(() => { //Is invoked at component rendering
         getTodos()
     }, [])
 
