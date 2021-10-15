@@ -1,19 +1,16 @@
 // import React, {useState, useEffect} from 'react'
 import * as React from 'react'
 import axios from 'axios'
-import logo from '../imgs/Get-tweets-logo.png'
 
 function App() {
 
-    const [handle, setHandle] = React.useState('')
     const [error, setError] = React.useState('')
     const [todos, setTodos] = React.useState([])
     React.useEffect(() => {
 
     }, [])
-    
+
     const handleClick = async () => {
-        console.log(handle)
         setError('')
         const API_URL = "https://jsonplaceholder.typicode.com/todos";
         let response = ''
