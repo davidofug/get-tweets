@@ -6,12 +6,12 @@ function App() {
 
     const [error, setError] = React.useState('')
     const [todos, setTodos] = React.useState([])
-    React.useEffect(() => {
 
+    React.useEffect(() => {
+        getTodos()
     }, [])
 
-    const handleClick = async () => {
-        setError('')
+    const getTodos = async () => {
         const API_URL = "https://jsonplaceholder.typicode.com/todos";
         let response = ''
 
@@ -27,7 +27,11 @@ function App() {
             console.log(error)
             console.log(response)
         }
-
+    }
+    const handleClick = () => {
+        setTodos([])
+        setError('')
+        setTimeout(getTodos, 30000)
     }
 
 /*     const myOutPut = <div>
@@ -44,6 +48,7 @@ function App() {
                 <button onClick={handleClick}>Get Todos</button>
             </div>
 
+            {todos?.length <= 0 && <div>Loading...</div>}
             {todos?.length > 0 &&
                 <ul>
                     {todos.map(todo => <li key={todo.id}>{todo.title}</li>)}
