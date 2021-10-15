@@ -1,20 +1,57 @@
-// import React, {useState} from 'react'
+// import React, {useState, useEffect} from 'react'
 import * as React from 'react'
+import axios from 'axios'
 import logo from '../imgs/Get-tweets-logo.png'
 
 function App() {
 
     const [handle, setHandle] = React.useState('')
-    const handleClick = () => {
-        console.log( handle )
+    const [error, setError] = React.useState('')
+    const [todos, setTodos] = React.useState([])
+    React.useEffect(() => {
+
+    }, [])
+    
+    const handleClick = async () => {
+        console.log(handle)
+        setError('')
+        const API_URL = "https://jsonplaceholder.typicode.com/todos";
+        let response = ''
+
+        try {
+            response = await axios.get(API_URL);
+            // console.log(response)
+            let { data } = response
+            setTodos(data)
+            // console.log(data)
+        } catch (error) {
+
+            setError(<h1>Resource error</h1>)
+            console.log(error)
+            console.log(response)
+        }
+
     }
+
+/*     const myOutPut = <div>
+        <b>Some thing </b >
+    </div>
+
+    return (myOutPut) */
+
     return (
         <>
-            <img src={logo} alt="Get Tweets logo" width="150" height="30" />
+            <h1>Todos</h1>
+            {error}
             <div>
-                <input type="text" placeholder="@handle" onChange={(event) =>  setHandle(event.target.value)} />
-                <button onClick={handleClick}>Get</button>
+                <button onClick={handleClick}>Get Todos</button>
             </div>
+
+            {todos?.length > 0 &&
+                <ul>
+                    {todos.map(todo => <li key={todo.id}>{todo.title}</li>)}
+                </ul>
+            }
         </>
     )
 }
