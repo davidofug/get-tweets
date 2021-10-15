@@ -1,7 +1,7 @@
 // import React, {useState, useEffect} from 'react'
 import * as React from 'react'
 import axios from 'axios'
-
+import {Link} from 'react-router-dom'
 function Posts() { //Opening a component
 
     const [error, setError] = React.useState('')
@@ -42,6 +42,7 @@ function Posts() { //Opening a component
 
     return (
         <>
+            <Link to="/todos">Todos</Link>
             <h1>Posts</h1>
             {error}
             <div>

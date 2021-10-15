@@ -1,6 +1,7 @@
 // import React, {useState, useEffect} from 'react'
 import * as React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function Todos() { //Opening a component
 
@@ -42,6 +43,7 @@ function Todos() { //Opening a component
 
     return (
         <>
+            <Link to="/posts">Posts</Link>
             <h1>Todos</h1>
             {error}
             <div>
