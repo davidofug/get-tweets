@@ -12,11 +12,11 @@ function Posts() { //Opening a component
     }, [])
 
     const getPosts = async () => {
-        const API_URL = "https://jsonplaceholder.typicode.com/posts";
+        const API_URL = "https://jsonplaceholder.typicode.com/posts"
         let response = ''
 
         try {
-            response = await axios.get(API_URL);
+            response = await axios.get(API_URL)
             // console.log(response)
             let { data } = response
             setPosts(data)
