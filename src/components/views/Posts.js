@@ -1,37 +1,33 @@
 // import React, {useState, useEffect} from 'react'
 import * as React from 'react'
-import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import getData from '../helpers/fetchData'
+
 function Posts() { //Opening a component
 
     const [error, setError] = React.useState('')
     const [posts, setPosts] = React.useState([])
 
-    React.useEffect(() => { //Is invoked at component rendering
-        getPosts()
-    }, [])
-
-    const getPosts = async () => {
-        const API_URL = "https://jsonplaceholder.typicode.com/posts"
-        let response = ''
-
-        try {
-            response = await axios.get(API_URL)
-            // console.log(response)
-            let { data } = response
-            setPosts(data)
-            // console.log(data)
-        } catch (error) {
-
-            setError(<h1>Resource error</h1>)
-            console.log(error)
-            console.log(response)
-        }
-    }
-    const handleClick = () => {
+    const handlePosts = async () => {
         setPosts([])
         setError('')
-        setTimeout(getPosts, 5000)
+        const posts = await getData('posts')
+
+        if (posts?.error !== undefined) return setError(posts.error)
+
+/*         if (todos.hasOwnProperty(error) && todos.error !== undefined) {
+            return setError(todos.error)
+        } */
+
+        setPosts(posts)
+    }
+
+    React.useEffect(() => { //Is invoked at component rendering
+        handlePosts()
+    }, [])
+
+    const handleClick = () => {
+        handlePosts()
     }
 
 /*     const myOutPut = <div>
@@ -52,7 +48,12 @@ function Posts() { //Opening a component
             {posts?.length <= 0 && <div>Loading...</div>}
             {posts?.length > 0 &&
                 <ul>
-                    {posts.map(post => <li key={post.id}>{post.title}</li>)}
+                    {posts.map(post =>
+                        <li key={post.id}>
+                            <h1>{post.title}</h1>
+                            <p>{post.body}</p>
+                        </li>
+                    )}
                 </ul>
             }
         </>

@@ -48,7 +48,8 @@ function Todos() { //Opening a component
             {todos?.length <= 0 && <div>Loading...</div>}
             {todos?.length > 0 &&
                 <ul>
-                    {todos.map(todo => <li key={todo.id}>{todo.title}</li>)}
+                {todos.map(todo => <li key={todo.id}>
+                    { todo.completed ? <strike>todo.title</strike> : todo.title}</li>)}
                 </ul>
             }
         </>
