@@ -2,14 +2,15 @@ import * as React from 'react'
 import Posts from '../views/Posts'
 import Todos from '../views/Todos'
 import Home from '../views/Home'
+import Apost from '../views/Apost'
 
 import {
     BrowserRouter as Router,
-    Switch, Route, Link
+    Switch, Route
 } from 'react-router-dom'
 
 function App() {
-    const [page, setPage] = React.useState(null)
+    // const [page, setPage] = React.useState(null)
 
     return (
         <Router>
@@ -22,9 +23,13 @@ function App() {
                 <Route path="/" exact>
                     <Home />
                 </Route>
-                <Route path="/posts">
+                <Route path="/posts" exact>
                     <Posts />
                 </Route>
+                <Route path="/posts/:id">
+                    <Apost />
+                </Route>
+
                 <Route path="/todos">
                     <Todos />
                 </Route>

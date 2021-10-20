@@ -37,7 +37,7 @@ function Posts() { //Opening a component
     return (myOutPut) */
 
     return (
-        <>
+        <div className="container mx-auto">
             <Link to="/todos">Todos</Link>
             <h1>Posts</h1>
             {error}
@@ -48,15 +48,17 @@ function Posts() { //Opening a component
             {posts?.length <= 0 && <div>Loading...</div>}
             {posts?.length > 0 &&
                 <ul>
-                    {posts.map(post =>
-                        <li key={post.id}>
+                {posts.map(post =>
+                    <Link key={post.id} to={`/posts/${post.id}`}>
+                        <li>
                             <h1>{post.title}</h1>
                             <p>{post.body}</p>
                         </li>
+                    </Link>
                     )}
                 </ul>
             }
-        </>
+        </div>
     )
 }
 

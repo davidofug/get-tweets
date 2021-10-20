@@ -37,7 +37,7 @@ function Todos() { //Opening a component
     return (myOutPut) */
 
     return (
-        <>
+        <div className="container mx-auto">
             <Link to="/posts">Posts</Link>
             <h1>Todos</h1>
             {error}
@@ -52,7 +52,7 @@ function Todos() { //Opening a component
                     { todo.completed ? <strike>todo.title</strike> : todo.title}</li>)}
                 </ul>
             }
-        </>
+        </div>
     )
 }
 
